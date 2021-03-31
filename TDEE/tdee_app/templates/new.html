@@ -1,0 +1,42 @@
+{% extends "layout.html" %}
+{% block content %}
+<div class="content-section col-md-8 align-self-center">
+    <div class="col"></div>
+    <form method="POST" action="">
+        {{ form.hidden_tag() }}
+        <fieldset class="form-group">
+            <legend class="border-bottom text-center">Daily Data</legend>
+            <div class="form-group">
+                {{ form.calories.label(class="form-control-label") }}
+
+                {% if form.calories.errors %}
+                {{ form.calories(class="form-control form-control-lg is-invalid") }}
+                <div class="invalid-feedback">
+                    {% for error in form.calories.errors %}
+                    <span>{{ error }}</span>
+                    {% endfor %}
+                </div>
+                {% else %}
+                {{ form.calories(class="form-control form-control-lg") }}
+                {% endif %}
+            </div>
+            <div class="form-group">
+                {{ form.weight.label(class="form-control-label") }}
+                {% if form.weight.errors %}
+                {{ form.weight(class="form-control form-control-lg is-invalid") }}
+                <div class="invalid-feedback">
+                    {% for error in form.weight.errors %}
+                    <span>{{ error }}</span>
+                    {% endfor %}
+                </div>
+                {% else %}
+                {{ form.weight(class="form-control form-control-lg") }}
+                {% endif %}
+            </div>
+        </fieldset>
+        <div class="form-group">
+            {{ form.submit(class="btn btn-outline-info col-md-12 mr-auto") }}
+        </div>
+    </form>
+</div>
+{% endblock content %}

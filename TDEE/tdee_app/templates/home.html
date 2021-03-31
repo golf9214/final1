@@ -1,0 +1,16 @@
+{% extends "layout.html" %}
+{% block content %}
+<div class="row">
+  <a href="{{ url_for('data.new') }}" class="btn btn-outline-info col-md-12 mr-auto">{{ text }}</a>
+
+</div>
+<div class="row">
+  <article class="media content-section col-md-12 mr-auto">
+    <div class="media-body col">
+      <h5 class="cr-2">You have been tracking for {{ days }} days</h5>
+      <h3 class="cr-2">Monthly TDEE: {{ tdee }}</h3>
+
+    </div>
+  </article>
+</div>
+{% endblock content %}

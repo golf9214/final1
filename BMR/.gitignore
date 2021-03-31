@@ -1,0 +1,9 @@
+*.Rproj*
+.Rhistory
+*.o
+*.so
+*.dll
+*.vscode
+/src/bmlib/include/armadillo*
+.Rproj.user
+*.tmp

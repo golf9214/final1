@@ -1,0 +1,41 @@
+{% extends "layout.html" %}
+{% block content %}
+<div class="row">
+    <a href="{{ url_for('data.add_data') }}" class="btn btn-outline-info col-md-8 mr-auto">Add Data for Date</a>
+    <a href="{{ url_for('data.new') }}" class="btn btn-outline-info col-md-4 mr-auto">{{ text }}</a>
+
+
+</div>
+<div class="row">
+    {% for data in datas %}
+    <article class="media content-section col-md-6 mr-auto">
+        <div class="media-body col">
+            <h5 class="cr-2">{{ data.date }}</h5>
+            <h6 class="cr-2">{{ data.days }} days since start</h6>
+            <h5 class="cr-2">{{ data.user_id.username }}</h5>
+            <h5 class="cr-2">{{ data.calories }} Calories</h5>
+            <h5 class="cr-2">{{ data.weight }} LB</h5>
+            <div class=row>
+                <form action="{{ url_for('data.delete_data', data_id=data.id)}}" method="POST">
+                    <input type="submit" class="btn btn-info btn-sm m-1" value="Update"></input>
+                </form>
+                <form action="{{ url_for('data.delete_data', data_id=data.id)}}" method="POST">
+                    <input type="submit" class="btn btn-danger btn-sm m-1" value="Delete"></input>
+                </form>
+            </div>
+        </div>
+        <div class="media-body">
+            <h6 class="mr-2 cr-2">Weekly TDEE: </h6>
+            {% if data.days > 7 %}
+            <h3 class="cr-2 mr-2 border border-warning">{{ calc_week(data.days) }}</h3>
+            {% else %}
+            <h6 class="cr-2 mr-2 border border-warning">Data Pending</h6>
+            {% endif %}
+            <h6 class="mr-2 cr-2">Monthly TDEE: </h6>
+            <h3 class="cr-2 mr-2  border border-info">{{ calc_month(data.days) }}</h3>
+
+        </div>
+    </article>
+    {% endfor %}
+</div>
+{% endblock content %}
